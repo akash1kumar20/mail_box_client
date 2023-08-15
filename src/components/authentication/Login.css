@@ -1,0 +1,39 @@
+input {
+  width: 90%;
+  right: 5%;
+  left: 5%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 7px;
+  border-top-style: va;
+}
+input:hover {
+  width: 90%;
+  right: 5%;
+  left: 5%;
+  border: 2px solid rgb(8, 58, 255);
+  padding: 7px;
+}
+.forgot {
+  margin-top: 1%;
+  margin-left: 5%;
+  font-weight: bold;
+  color: blue;
+  text-align: left;
+  justify-items: left;
+  justify-content: start;
+}
+.create {
+  margin-left: 5%;
+  text-align: left;
+  font-weight: bold;
+}
+.next {
+  margin-right: 5%;
+  text-align: right;
+}
+@media screen and (max-width: 580px) {
+  .next {
+    text-align: left;
+    margin-left: 5%;
+  }
+}
