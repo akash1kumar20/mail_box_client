@@ -1,0 +1,73 @@
+.mailBackground {
+  background: url("./../../images/theme-myxwi9eaz6f90bag.jpg") 0 0 fixed;
+  height: 100vh;
+  color: white;
+}
+.topPart {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.icons {
+  font-size: larger;
+}
+.search {
+  width: 50%;
+  background-color: rgba(125, 125, 125, 0.5);
+  font-size: medium;
+  font-weight: bolder;
+  border-radius: 1rem;
+  padding-bottom: 5px;
+}
+.search:hover {
+  zoom: 0%;
+  width: 50%;
+  background-color: rgba(125, 125, 125, 0.5);
+  font-size: medium;
+  font-weight: bolder;
+  border-radius: 1rem;
+  padding-bottom: 5px;
+}
+.user {
+  margin-left: 20%;
+}
+.inboxBox {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(0, 0, 0);
+}
+@media screen and (max-width: 1100px) {
+  .user {
+    margin-left: 15%;
+  }
+}
+@media screen and (max-width: 890px) {
+  .user {
+    margin-left: 10%;
+  }
+}
+@media screen and (max-width: 780px) {
+  .search {
+    width: 40%;
+    background-color: rgba(125, 125, 125, 0.5);
+    font-size: medium;
+    font-weight: bolder;
+    border-radius: 1rem;
+    padding-bottom: 5px;
+  }
+  .user {
+    margin-left: 3%;
+    margin-right: 5px;
+  }
+}
+@media screen and (max-width: 485px) {
+  .search {
+    width: 30%;
+    background-color: rgba(125, 125, 125, 0.5);
+    font-size: medium;
+    font-weight: bolder;
+    border-radius: 1rem;
+    padding-bottom: 5px;
+  }
+  .user {
+    margin-left: 2%;
+    margin-right: 3px;
+  }
+}
