@@ -1,6 +1,9 @@
 .mailBackground {
-  background: url("./../../images/theme-myxwi9eaz6f90bag.jpg") 0 0 fixed;
+  background: url("./../../images/theme-myxwi9eaz6f90bag.jpg");
   height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
   color: white;
 }
 .topPart {
@@ -32,6 +35,15 @@
 .inboxBox {
   background-color: rgba(255, 255, 255, 0.8);
   color: rgb(0, 0, 0);
+  border-radius: 1rem;
+}
+.compose {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 5%;
+  padding-top: 7%;
+  padding-bottom: 7%;
+  border-radius: 0.5rem;
 }
 @media screen and (max-width: 1100px) {
   .user {
