@@ -53,7 +53,7 @@ const Mail = () => {
       <div className="row">
         {!canvasState && (
           <div
-            className="col-1 ms-4 me-5 "
+            className="col-1 ms-4 me-sm-5"
             onMouseOver={() => dispatch(canvasAction.showCanvas())}
           >
             <div className="icons mt-4">
@@ -72,7 +72,7 @@ const Mail = () => {
           </div>
         )}
         {canvasState && (
-          <div className="col-2 ms-4" onMouseOut={closeCanvas}>
+          <div className="col-2 ms-md-4" onMouseOut={closeCanvas}>
             <div className="icons mt-4">
               <h3 className="compose">
                 <FontAwesomeIcon icon={faPencil} className="mb-1 me-1" />
@@ -101,7 +101,7 @@ const Mail = () => {
             </div>
           </div>
         )}
-        <div className="col-9 inboxBox ms-5">
+        <div className="col-9 inboxBox ms-md-5 ms-sm-2">
           <div className="mb-4 mt-2 icons">
             <FontAwesomeIcon icon={faSquare} className="me-4 ms-1" />
             <FontAwesomeIcon

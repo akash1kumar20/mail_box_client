@@ -1,6 +1,8 @@
 import Card from "../UI/Card";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 const ForgotPassword = () => {
+  const navigate = useNavigate();
   return (
     <Card>
       <div className="container">
@@ -20,7 +22,15 @@ const ForgotPassword = () => {
           <div className="row">
             <form>
               <input type="email" required placeholder="Enter Your Email" />
-              <div className="row justify-content-end">
+              <div className="row justify-content-between">
+                <div className="col-3">
+                  <button
+                    className="ps-3 pe-3 mt-3 btn btn-primary"
+                    onClick={() => navigate("/")}
+                  >
+                    Cancel
+                  </button>
+                </div>
                 <div className="col-3">
                   <button
                     className="ps-3 pe-3 mt-3 btn btn-primary"

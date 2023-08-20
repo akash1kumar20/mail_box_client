@@ -1,16 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Card from "../UI/Card";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import Google from "./Google";
-const Login = () => {
+const Password = () => {
   const navigate = useNavigate();
-  const emailRef = useRef();
+  useEffect(() => {
+    const depend = localStorage.getItem("userEmail");
+    if (!depend) {
+      alert("Currently you don not have access of this page");
+      navigate("/");
+      return;
+    }
+  }, []);
+  const passwordRef = useRef();
   const formHandler = (event) => {
     event.preventDefault();
-    let emailValue = emailRef.current.value;
-    localStorage.setItem("userEmail", JSON.stringify(emailValue));
-    navigate("/password");
+    let passwordValue = passwordRef.current.value;
+    console.log("password", passwordValue);
   };
   return (
     <Card>
@@ -24,11 +31,16 @@ const Login = () => {
         <div className="row mb-2">
           <form onSubmit={formHandler}>
             <input
-              type="text"
+              type="password"
               required
-              placeholder="Email or Phone"
-              ref={emailRef}
+              placeholder="Enter Your Password"
+              ref={passwordRef}
             />
+
+            <p className="forgot" onClick={() => navigate("/forgotPassword")}>
+              Forgot password?
+            </p>
+
             <div className="row mb-5 mt-3 justify-content-between">
               <div className="col-sm-6 create">
                 <p
@@ -51,5 +63,4 @@ const Login = () => {
     </Card>
   );
 };
-
-export default Login;
+export default Password;
