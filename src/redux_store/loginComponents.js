@@ -3,6 +3,7 @@ const initialStateLogin = {
   userEmail: "",
   token: "",
   isLogIn: null,
+  data: "",
 };
 const loginComponentsSlice = createSlice({
   name: "inboxSlice",
@@ -21,6 +22,9 @@ const loginComponentsSlice = createSlice({
     },
     loginStatus(state, action) {
       state.isLogIn = action.payload;
+    },
+    addData(state, action) {
+      state.data = action.payload;
     },
   },
 });

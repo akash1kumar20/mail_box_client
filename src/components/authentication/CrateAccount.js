@@ -1,15 +1,20 @@
 import React, { useRef } from "react";
 import Card from "../UI/Card";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginComponentsSliceActions } from "../../redux_store/loginComponents";
 const CrateAccount = () => {
   const emailRef = useRef();
   const nameRef = useRef();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const formHandler = (event) => {
     event.preventDefault();
     const emailValue = emailRef.current.value;
     const nameValue = nameRef.current.value;
     console.log(emailValue, nameValue);
+    dispatch(loginComponentsSliceActions.addData(emailValue));
+    dispatch(loginComponentsSliceActions.loginStatus(false));
     localStorage.setItem("userEmail", JSON.stringify(emailValue));
     navigate("/password");
   };
