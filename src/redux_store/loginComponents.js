@@ -1,17 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialStateLogin = {
-  createAccount: null,
-  displayPassword: null,
+  userEmail: "",
+  token: "",
+  isLogIn: null,
 };
 const loginComponentsSlice = createSlice({
-  name: "loginItems",
+  name: "inboxSlice",
   initialState: initialStateLogin,
   reducers: {
-    createAccountStatus(state, action) {
-      state.createAccount = action.payload;
+    login(state, actions) {
+      state.userEmail = actions.payload.userEmail;
+      state.token = actions.payload.token;
+      localStorage.setItem("userEmail", state.userEmail);
+      localStorage.setItem("token", state.token);
     },
-    displayPasswordStatus(state, action) {
-      state.displayPassword = action.payload;
+    logout(state) {
+      state.userEmail = "";
+      state.token = "";
+      localStorage.clear();
+    },
+    loginStatus(state, action) {
+      state.isLogIn = action.payload;
     },
   },
 });

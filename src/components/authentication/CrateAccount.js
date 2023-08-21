@@ -10,6 +10,7 @@ const CrateAccount = () => {
     const emailValue = emailRef.current.value;
     const nameValue = nameRef.current.value;
     console.log(emailValue, nameValue);
+    localStorage.setItem("userEmail", JSON.stringify(emailValue));
     navigate("/password");
   };
   return (

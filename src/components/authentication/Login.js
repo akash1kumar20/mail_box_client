@@ -3,13 +3,17 @@ import Card from "../UI/Card";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import Google from "./Google";
+import { loginComponentsSliceActions } from "../../redux_store/loginComponents";
+import { useDispatch } from "react-redux";
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const emailRef = useRef();
   const formHandler = (event) => {
     event.preventDefault();
     let emailValue = emailRef.current.value;
     localStorage.setItem("userEmail", JSON.stringify(emailValue));
+    dispatch(loginComponentsSliceActions.loginStatus(true));
     navigate("/password");
   };
   return (

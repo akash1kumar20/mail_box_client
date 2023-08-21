@@ -4,6 +4,8 @@ const inboxInititalElement = {
   profile: null,
   star: null,
   draft: null,
+  trash: null,
+  sent: null,
 };
 
 const inboxItemSlice = createSlice({
@@ -14,13 +16,19 @@ const inboxItemSlice = createSlice({
       state.compose = action.payload;
     },
     profileAction(state, action) {
-      state.compose = action.payload;
+      state.profile = action.payload;
     },
     starAction(state, action) {
-      state.compose = action.payload;
+      state.star = action.payload;
     },
     draftAction(state, action) {
-      state.compose = action.payload;
+      state.draft = action.payload;
+    },
+    trashAction(state, action) {
+      state.trash = action.payload;
+    },
+    sentAction(state, action) {
+      state.sent = action.payload;
     },
   },
 });

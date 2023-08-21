@@ -22,8 +22,8 @@ const ForgotPassword = () => {
           <div className="row">
             <form>
               <input type="email" required placeholder="Enter Your Email" />
-              <div className="row justify-content-between">
-                <div className="col-3">
+              <div className="row mb-5 justify-content-between">
+                <div className="col-3 mb-3">
                   <button
                     className="ps-3 pe-3 mt-3 btn btn-primary"
                     onClick={() => navigate("/")}
@@ -31,7 +31,7 @@ const ForgotPassword = () => {
                     Cancel
                   </button>
                 </div>
-                <div className="col-3">
+                <div className="col-3 mb-3">
                   <button
                     className="ps-3 pe-3 mt-3 btn btn-primary"
                     type="submit"

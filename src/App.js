@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoginPage from "./components/pages/LoginPage";
+import LoadingComponent from "./components/UI/LoadingComponent";
 const ForgotPassword = lazy(() =>
   import("./components/authentication/ForgotPassword")
 );
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
   {
     path: "forgotPassword",
     element: (
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<LoadingComponent />}>
         <ForgotPassword />
       </Suspense>
     ),
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   {
     path: "inbox",
     element: (
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<LoadingComponent />}>
         <Mail />
       </Suspense>
     ),
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
   {
     path: "signup",
     element: (
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<LoadingComponent />}>
         <CreateAccount />
       </Suspense>
     ),
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
   {
     path: "password",
     element: (
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<LoadingComponent />}>
         <Password />
       </Suspense>
     ),
