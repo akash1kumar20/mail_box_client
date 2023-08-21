@@ -10,8 +10,8 @@ const loginComponentsSlice = createSlice({
   initialState: initialStateLogin,
   reducers: {
     login(state, actions) {
-      state.userEmail = actions.payload.userEmail;
-      state.token = actions.payload.token;
+      state.userEmail = actions.payload.email;
+      state.token = actions.payload.idToken;
       localStorage.setItem("userEmail", state.userEmail);
       localStorage.setItem("token", state.token);
     },

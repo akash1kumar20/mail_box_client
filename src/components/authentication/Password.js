@@ -1,25 +1,29 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Card from "../UI/Card";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import Google from "./Google";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { loginComponentsSliceActions } from "../../redux_store/loginComponents";
 const Password = () => {
   const navigate = useNavigate();
-  const depend = localStorage.getItem("userEmail");
+  const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.loginComponents.data);
+  if (!userEmail) {
+    toast.error("Please enter valid email first!", {
+      theme: "dark",
+      position: "top-center",
+      autoClose: 2000,
+    });
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  }
   const isLogIn = useSelector((state) => state.loginComponents.isLogIn);
   console.log(userEmail, isLogIn);
-  useEffect(() => {
-    if (!depend) {
-      alert("Currently you don not have access of this page");
-      navigate("/");
-      return;
-    }
-  }, []);
   const passwordRef = useRef();
   const formHandler = async (event) => {
     event.preventDefault();
@@ -39,10 +43,11 @@ const Password = () => {
         returnSecureToken: true,
       });
       console.log(res.data);
+      dispatch(loginComponentsSliceActions.login(res.data));
       if (isLogIn) {
         toast.success("Welcome Back!!!", {
           position: "top-right",
-          theme: "light",
+          theme: "colored",
           autoClose: 2000,
         });
         setTimeout(() => {
@@ -80,7 +85,7 @@ const Password = () => {
     <>
       <ToastContainer />
       <Card>
-        {depend && (
+        {userEmail && (
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-md-6">

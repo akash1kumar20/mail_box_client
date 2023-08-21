@@ -13,9 +13,9 @@ const CrateAccount = () => {
     const emailValue = emailRef.current.value;
     const nameValue = nameRef.current.value;
     console.log(emailValue, nameValue);
+    localStorage.setItem("beforeAuth", JSON.stringify(emailValue));
     dispatch(loginComponentsSliceActions.addData(emailValue));
     dispatch(loginComponentsSliceActions.loginStatus(false));
-    localStorage.setItem("userEmail", JSON.stringify(emailValue));
     navigate("/password");
   };
   return (

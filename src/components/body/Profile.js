@@ -1,21 +1,31 @@
 import "./Profile.css";
 import { useDispatch } from "react-redux";
 import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
+import { loginComponentsSliceActions } from "../../redux_store/loginComponents";
 import userImage from "./../../images/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const depend = JSON.parse(localStorage.getItem("userEmail"));
+  const depend = localStorage.getItem("userEmail");
   const logOutFunctionality = (event) => {
     event.preventDefault();
-    navigate("/");
-    localStorage.clear();
+    dispatch(loginComponentsSliceActions.logout());
     dispatch(inboxSliceAction.profileAction(false));
-    window.location.reload(true);
+    toast.success("Logout Successfully!!!", {
+      theme: "colored",
+      position: "top-center",
+      autoClose: 2000,
+    });
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
   };
   return (
     <>
+      <ToastContainer />
       <div className="container mt-2 profile">
         <div className="row justify-content-end">
           <div

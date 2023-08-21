@@ -12,9 +12,9 @@ const Login = () => {
   const formHandler = (event) => {
     event.preventDefault();
     let emailValue = emailRef.current.value;
-    localStorage.setItem("userEmail", JSON.stringify(emailValue));
-    dispatch(loginComponentsSliceActions.loginStatus(true));
+    dispatch(loginComponentsSliceActions.addData(emailValue));
     navigate("/password");
+    dispatch(loginComponentsSliceActions.loginStatus(true));
   };
   return (
     <Card>
