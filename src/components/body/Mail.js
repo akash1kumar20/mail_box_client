@@ -20,9 +20,11 @@ import { canvasAction } from "../../redux_store/canvasSlice";
 import { useNavigate } from "react-router-dom";
 import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 import Profile from "./Profile";
+import Compose from "./Compose";
 const Mail = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.inbox.profile);
+  const compose = useSelector((state) => state.inbox.compose);
   const depend = localStorage.getItem("userEmail");
   useEffect(() => {
     if (!depend) {
@@ -48,6 +50,7 @@ const Mail = () => {
   return (
     <>
       {profile && <Profile />}
+      {compose && <Compose />}
       {depend && (
         <div className="mailBackground">
           <div className="topPart">
@@ -95,7 +98,12 @@ const Mail = () => {
             {canvasState && (
               <div className="col-2 ms-md-4" onMouseOut={closeCanvas}>
                 <div className="icons mt-4">
-                  <h3 className="compose">
+                  <h3
+                    className="compose"
+                    onClick={() =>
+                      dispatch(inboxSliceAction.composeAction(true))
+                    }
+                  >
                     <FontAwesomeIcon icon={faPencil} className="mb-1 me-1" />
                     <span> Compose</span>
                   </h3>
