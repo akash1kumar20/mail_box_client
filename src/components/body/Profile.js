@@ -46,7 +46,7 @@ const Profile = () => {
           />
         </div>
         <div className="row">
-          <h2>Hi, UserName!</h2>
+          <h2>Hi, User!</h2>
         </div>
         <div className="row mb-2 pb-3 justify-content-center">
           <div className="col-4">

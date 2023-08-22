@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./Compose.css";
 import { useDispatch } from "react-redux";
 import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
+import JoditEditor from "jodit-react";
 const Compose = () => {
+  const editor = useRef(null);
+  const [content, setContent] = useState("");
   const dispatch = useDispatch();
   return (
     <div className="container composeBox">
@@ -32,7 +35,11 @@ const Compose = () => {
         </div>
         <div className="row composeRow">
           <div className="col-12">
-            <input type="text" className="composeInputBody" />
+            <JoditEditor
+              ref={editor}
+              value={content}
+              onChange={(newContent) => setContent(newContent)}
+            />
           </div>
         </div>
         <div className="row lastRow">

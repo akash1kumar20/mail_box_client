@@ -20,12 +20,12 @@
 }
 .composeInputSubject {
   margin-top: 7px;
-  max-width: 75%;
+  max-width: 79%;
   border: 0px solid white;
 }
 .composeInputSubject:hover {
   margin-top: 7px;
-  max-width: 75%;
+  max-width: 79%;
   border: 0px solid white;
 }
 .composeRow {
@@ -48,14 +48,13 @@
 }
 .composeInputBody {
   width: 100%;
-  height: 30vh;
+  overflow: scroll;
   padding-left: 0;
   margin-left: 0;
   border: 0px solid white;
 }
 .composeInputBody:hover {
   width: 100%;
-  height: 30vh;
   padding-left: 0;
   margin-left: 0;
   border: 0px solid white;
