@@ -1,0 +1,15 @@
+.sideOptionClickable {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  height: 80vh;
+}
+.elements {
+  margin-bottom: 3px;
+}
+.elements:hover {
+  margin-bottom: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+}

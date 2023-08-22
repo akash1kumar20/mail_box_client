@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const inboxInititalElement = {
   compose: null,
   profile: null,
+  inbox: null,
   star: null,
   draft: null,
   trash: null,
@@ -29,6 +30,9 @@ const inboxItemSlice = createSlice({
     },
     sentAction(state, action) {
       state.sent = action.payload;
+    },
+    inboxAaction(state, action) {
+      state.inbox = action.payload;
     },
   },
 });

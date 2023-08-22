@@ -1,0 +1,17 @@
+.mailRecieve {
+  overflow: hidden;
+  max-width: max-content;
+  max-height: 5%;
+}
+.senderMail {
+  text-align: left;
+  margin-left: 0;
+  padding-left: 0;
+}
+.title {
+  text-align: center;
+  text-decoration: underline;
+}
+.bodyHeading {
+  text-align: left;
+}

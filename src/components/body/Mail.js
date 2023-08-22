@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faPencil,
-  faInbox,
-  faStar,
-  faPaperPlane,
-  faBookmark,
-  faTrashCan,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 import "./Mail.css";
 import mHeading from "./../../../src/images/logo_gmail_lockup_dark_1x_r5.png";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,10 +12,15 @@ import Compose from "./Compose";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Inbox from "../pages/Inbox";
+import Star from "../pages/Star";
+import SideOption from "../pages/SideOption";
+import SideOptionClickable from "../pages/SideOptionClickable";
 const Mail = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.inbox.profile);
   const compose = useSelector((state) => state.inbox.compose);
+  const star = useSelector((state) => state.inbox.star);
+  const inbox = useSelector((state) => state.inbox.inbox);
   const depend = localStorage.getItem("userEmail");
   useEffect(() => {
     if (!depend) {
@@ -53,6 +49,7 @@ const Mail = () => {
       dispatch(canvasAction.showCanvas());
     }
   };
+
   return (
     <>
       <ToastContainer />
@@ -87,67 +84,22 @@ const Mail = () => {
                 className="col-1 ms-4 me-sm-5"
                 onMouseOver={() => dispatch(canvasAction.showCanvas())}
               >
-                <div className="icons mt-4">
-                  <FontAwesomeIcon icon={faPencil} className="mb-3" />
-                  <br />
-                  <FontAwesomeIcon icon={faInbox} className="mb-3" />
-                  <br />
-                  <FontAwesomeIcon icon={faStar} className="mb-3" />
-                  <br />
-                  <FontAwesomeIcon icon={faPaperPlane} className="mb-3" />
-                  <br />
-                  <FontAwesomeIcon icon={faBookmark} className="mb-3" />
-                  <br />
-                  <FontAwesomeIcon icon={faTrashCan} />
-                </div>
+                <SideOption />
               </div>
             )}
             {canvasState && (
               <div className="col-2 ms-md-4" onMouseOut={closeCanvas}>
-                <div className="icons mt-4">
-                  <h3
-                    className="compose"
-                    onClick={() =>
-                      dispatch(inboxSliceAction.composeAction(true))
-                    }
-                  >
-                    <FontAwesomeIcon icon={faPencil} className="mb-1 me-1" />
-                    <span> Compose</span>
-                  </h3>
-                  <h5>
-                    <FontAwesomeIcon icon={faInbox} className="mb-1 me-3" />
-                    <span> Inbox</span>
-                  </h5>
-                  <h5>
-                    <FontAwesomeIcon icon={faStar} className="mb-1 me-3" />
-                    <span> Star</span>
-                  </h5>
-                  <h5>
-                    <FontAwesomeIcon
-                      icon={faPaperPlane}
-                      className="mb-1 me-3"
-                    />
-                    <span> Sent</span>
-                  </h5>
-                  <h5>
-                    <FontAwesomeIcon icon={faBookmark} className="mb-1 me-3" />
-                    <span> Draft</span>
-                  </h5>
-                  <h5>
-                    <FontAwesomeIcon icon={faTrashCan} className=" me-3" />
-                    <span>Trash</span>
-                  </h5>
-                </div>
+                <SideOptionClickable />
               </div>
             )}
-
             <div
               className="col-9 inboxBox ms-md-5 ms-sm-2"
               onMouseOver={() =>
                 dispatch(inboxSliceAction.profileAction(false))
               }
             >
-              <Inbox />
+              {!star && <Inbox />}
+              {star && !inbox && <Star />}
             </div>
           </div>
         </div>
