@@ -1,13 +1,16 @@
 .singleMailBody {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(1, 1, 1, 0.5);
   max-width: 90%;
   position: fixed;
   left: 5%;
   right: 5%;
-  color: black;
+  color: rgb(255, 255, 255);
   margin-top: 1rem;
   height: 85vh;
   overflow: scroll;
+  background-image: url("./../../images/gmail-logo-header.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .singleMailMessage {
   border-top: 2px solid rgba(0, 0, 0, 0.1);
@@ -24,4 +27,7 @@
   font-size: smaller;
   padding-left: 10px;
   padding-right: 10px;
+}
+.singleMailContainer {
+  background-color: rgba(255, 255, 255, 0.3);
 }

@@ -7,6 +7,7 @@ const ForgotPassword = lazy(() =>
 );
 const Mail = lazy(() => import("./components/body/Mail"));
 const Password = lazy(() => import("./components/authentication/Password"));
+const SingleMail = lazy(() => import("./components/body/SingleMail"));
 const CreateAccount = lazy(() =>
   import("./components/authentication/CrateAccount")
 );
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingComponent />}>
         <Password />
+      </Suspense>
+    ),
+  },
+  {
+    path: "mail",
+    element: (
+      <Suspense fallback={<LoadingComponent />}>
+        <SingleMail />
       </Suspense>
     ),
   },

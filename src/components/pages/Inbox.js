@@ -12,10 +12,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
+import { useNavigate } from "react-router-dom";
 const Inbox = () => {
   const [inboxMail, setInboxMail] = useState([]);
-  const [id, setId] = useState(null);
-  const [data, setData] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
     const getData = async () => {
       const emailValue = localStorage.getItem("userEmail");
@@ -38,35 +38,8 @@ const Inbox = () => {
   let count = 0;
   const readMessage = Number(localStorage.getItem("count")) + 1;
   const unreadMessage = inboxMail.length - readMessage;
-
-  useEffect(() => {
-    const dataLocalStorage = JSON.parse(localStorage.getItem("mailRecieve"));
-    setId(dataLocalStorage.id);
-    setData(dataLocalStorage);
-  }, []);
   const dispatch = useDispatch();
   const trashIcon = useSelector((state) => state.inbox.trashIcon);
-  const handleMail = async (event) => {
-    event.preventDefault();
-    const emailValue = localStorage.getItem("userEmail");
-    let changeEmail = emailValue.replace("@", "").replace(".", "");
-    let updateData = {
-      body: data.body,
-      to: data.to,
-      subject: data.subject,
-      read: data.read,
-    };
-    try {
-      let res = await axios.put(
-        `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}/${id}.json`,
-        updateData
-      );
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <>
       <div className="mb-4 mt-2 icons row justify-content-between">
@@ -96,7 +69,7 @@ const Inbox = () => {
           key={inbox.id}
           className="row mailRecieve"
           onClick={() => (
-            dispatch(inboxSliceAction.singleMailAction(true)),
+            navigate("/mail"),
             localStorage.setItem(
               "mailRecieve",
               JSON.stringify({
@@ -121,7 +94,6 @@ const Inbox = () => {
             className="col-7 ms-2"
             onMouseOver={() => dispatch(inboxSliceAction.trashIconAction(true))}
             onMouseOut={() => dispatch(inboxSliceAction.trashIconAction(false))}
-            onClick={handleMail}
           >
             <textarea
               defaultValue={inbox.body}

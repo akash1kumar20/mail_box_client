@@ -1,13 +1,13 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStamp } from "@fortawesome/free-solid-svg-icons";
 import imgToUse from "./../../images/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png";
 import "./SingleMail.css";
 import { useDispatch } from "react-redux";
-import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
+import axios from "axios";
 const SingleMail = () => {
   const navigate = useNavigate();
   const depend = localStorage.getItem("userEmail");
@@ -25,7 +25,33 @@ const SingleMail = () => {
     }
   }, []);
   const mail = JSON.parse(localStorage.getItem("mailRecieve"));
-  const dispatch = useDispatch();
+  const dataLocalStorage = JSON.parse(localStorage.getItem("mailRecieve"));
+  let id = dataLocalStorage.id;
+
+  useEffect(() => {
+    const handleMail = async () => {
+      const emailValue = localStorage.getItem("userEmail");
+      let changeEmail = emailValue.replace("@", "").replace(".", "");
+      let updateData = {
+        body: dataLocalStorage.body,
+        to: dataLocalStorage.to,
+        subject: dataLocalStorage.subject,
+        read: dataLocalStorage.read,
+      };
+
+      try {
+        let res = await axios.put(
+          `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}/${id}.json`,
+          updateData
+        );
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleMail();
+  }, []);
+
   return (
     <>
       <ToastContainer />
@@ -41,7 +67,7 @@ const SingleMail = () => {
           <div className="col-1">
             <button
               className="btn btn-primary"
-              onClick={() => dispatch(inboxSliceAction.singleMailAction(false))}
+              onClick={() => navigate("/inbox")}
             >
               Back
             </button>
