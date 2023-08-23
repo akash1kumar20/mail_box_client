@@ -15,12 +15,16 @@ import Inbox from "../pages/Inbox";
 import Star from "../pages/Star";
 import SideOption from "../pages/SideOption";
 import SideOptionClickable from "../pages/SideOptionClickable";
+import Sent from "../pages/Sent";
+import SingleMail from "./SingleMail";
 const Mail = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.inbox.profile);
   const compose = useSelector((state) => state.inbox.compose);
   const star = useSelector((state) => state.inbox.star);
   const inbox = useSelector((state) => state.inbox.inbox);
+  const sent = useSelector((state) => state.inbox.sent);
+  const singleMail = useSelector((state) => state.inbox.singleMail);
   const depend = localStorage.getItem("userEmail");
   useEffect(() => {
     if (!depend) {
@@ -79,28 +83,34 @@ const Mail = () => {
           </div>
 
           <div className="row">
-            {!canvasState && (
-              <div
-                className="col-1 ms-4 me-sm-5"
-                onMouseOver={() => dispatch(canvasAction.showCanvas())}
-              >
-                <SideOption />
-              </div>
+            {singleMail && <SingleMail />}
+            {!singleMail && (
+              <>
+                {!canvasState && (
+                  <div
+                    className="col-1 ms-4 me-sm-5"
+                    onMouseOver={() => dispatch(canvasAction.showCanvas())}
+                  >
+                    <SideOption />
+                  </div>
+                )}
+                {canvasState && (
+                  <div className="col-2 ms-md-4" onMouseOut={closeCanvas}>
+                    <SideOptionClickable />
+                  </div>
+                )}
+                <div
+                  className="col-9 inboxBox ms-md-5 ms-sm-2"
+                  onMouseOver={() =>
+                    dispatch(inboxSliceAction.profileAction(false))
+                  }
+                >
+                  {!star && !sent && <Inbox />}
+                  {star && !inbox && !sent && <Star />}
+                  {sent && !inbox && !star && <Sent />}
+                </div>
+              </>
             )}
-            {canvasState && (
-              <div className="col-2 ms-md-4" onMouseOut={closeCanvas}>
-                <SideOptionClickable />
-              </div>
-            )}
-            <div
-              className="col-9 inboxBox ms-md-5 ms-sm-2"
-              onMouseOver={() =>
-                dispatch(inboxSliceAction.profileAction(false))
-              }
-            >
-              {!star && <Inbox />}
-              {star && !inbox && <Star />}
-            </div>
           </div>
         </div>
       )}

@@ -1,7 +1,5 @@
 .mailRecieve {
-  overflow: hidden;
-  max-width: max-content;
-  max-height: 5%;
+  overflow: visible;
 }
 .senderMail {
   text-align: left;
@@ -14,4 +12,21 @@
 }
 .bodyHeading {
   text-align: left;
+}
+.unreadMessage {
+  color: brown;
+  text-align: right;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.blueDot {
+  color: blue;
+  margin-left: 20px;
+  font-size: small;
+}
+.inboxMessage {
+  border: 1px solid black;
+  margin-bottom: 5px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.5);
 }

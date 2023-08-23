@@ -18,7 +18,8 @@ const loginComponentsSlice = createSlice({
     logout(state) {
       state.userEmail = "";
       state.token = "";
-      localStorage.clear();
+      localStorage.removeItem("userEmail");
+      localStorage.removeItem("token");
     },
     loginStatus(state, action) {
       state.isLogIn = action.payload;

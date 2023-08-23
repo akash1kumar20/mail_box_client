@@ -1,0 +1,27 @@
+.singleMailBody {
+  background-color: rgba(255, 255, 255, 0.7);
+  max-width: 90%;
+  position: fixed;
+  left: 5%;
+  right: 5%;
+  color: black;
+  margin-top: 1rem;
+  height: 85vh;
+  overflow: scroll;
+}
+.singleMailMessage {
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+}
+.singleMailMessageHeading {
+  text-align: center;
+  text-decoration: underline;
+}
+.singleMailInboxTag {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  margin-left: 1rem;
+  font-size: smaller;
+  padding-left: 10px;
+  padding-right: 10px;
+}

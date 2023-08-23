@@ -7,6 +7,8 @@ const inboxInititalElement = {
   draft: null,
   trash: null,
   sent: null,
+  singleMail: null,
+  trashIcon: null,
 };
 
 const inboxItemSlice = createSlice({
@@ -33,6 +35,12 @@ const inboxItemSlice = createSlice({
     },
     inboxAaction(state, action) {
       state.inbox = action.payload;
+    },
+    singleMailAction(state, action) {
+      state.singleMail = action.payload;
+    },
+    trashIconAction(state, action) {
+      state.trashIcon = action.payload;
     },
   },
 });
