@@ -24,7 +24,6 @@ const Inbox = () => {
         let res = await axios.get(
           `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}.json`
         );
-
         const convertIntoArray = [];
         for (let key in res.data) {
           convertIntoArray.push({ ...res.data[key], id: key });
@@ -36,7 +35,10 @@ const Inbox = () => {
     };
     getData();
   });
-  const unreadMessage = inboxMail.length;
+  let count = 0;
+  const readMessage = Number(localStorage.getItem("count")) + 1;
+  const unreadMessage = inboxMail.length - readMessage;
+
   useEffect(() => {
     const dataLocalStorage = JSON.parse(localStorage.getItem("mailRecieve"));
     setId(dataLocalStorage.id);
@@ -54,7 +56,6 @@ const Inbox = () => {
       subject: data.subject,
       read: data.read,
     };
-    console.log(updateData);
     try {
       let res = await axios.put(
         `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}/${id}.json`,
@@ -110,6 +111,7 @@ const Inbox = () => {
             {!inbox.read && (
               <FontAwesomeIcon icon={faCircle} className="blueDot" />
             )}
+            {inbox.read && localStorage.setItem("count", count++)}
           </div>
 
           <div className="col-2 senderMail">
