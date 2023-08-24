@@ -48,13 +48,6 @@
 }
 .composeInputBody {
   width: 100%;
-  overflow: scroll;
-  padding-left: 0;
-  margin-left: 0;
-  border: 0px solid white;
-}
-.composeInputBody:hover {
-  width: 100%;
   padding-left: 0;
   margin-left: 0;
   border: 0px solid white;

@@ -8,6 +8,7 @@ const inboxInititalElement = {
   trash: null,
   sent: null,
   trashIcon: null,
+  trashAction: false,
 };
 
 const inboxItemSlice = createSlice({
@@ -37,6 +38,9 @@ const inboxItemSlice = createSlice({
     },
     trashIconAction(state, action) {
       state.trashIcon = action.payload;
+    },
+    trashActionHandler(state, action) {
+      state.trashAction = action.payload;
     },
   },
 });

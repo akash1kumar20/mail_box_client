@@ -37,11 +37,12 @@ const Compose = () => {
       toast.success("Email Sent!", {
         position: "top-right",
         theme: "colored",
-        autoClose: 2500,
+        autoClose: 1000,
       });
       setTimeout(() => {
         dispatch(inboxSliceAction.composeAction(false));
-      }, 2500);
+        window.location.reload(true);
+      }, 1500);
     } catch (err) {
       console.log(err);
       toast.error("Please Try Again!", {
@@ -91,7 +92,7 @@ const Compose = () => {
             </div>
           </div>
           <div className="row composeRow">
-            <div className="col-12">
+            <div className="col-12 composeInputBody">
               <JoditEditor
                 ref={editor}
                 value={content}

@@ -1,12 +1,11 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStamp } from "@fortawesome/free-solid-svg-icons";
 import imgToUse from "./../../images/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png";
 import "./SingleMail.css";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 const SingleMail = () => {
   const navigate = useNavigate();
@@ -24,6 +23,7 @@ const SingleMail = () => {
       return;
     }
   }, []);
+
   const mail = JSON.parse(localStorage.getItem("mailRecieve"));
   const dataLocalStorage = JSON.parse(localStorage.getItem("mailRecieve"));
   let id = dataLocalStorage.id;
@@ -37,6 +37,7 @@ const SingleMail = () => {
         to: dataLocalStorage.to,
         subject: dataLocalStorage.subject,
         read: dataLocalStorage.read,
+        initialCount: 1,
       };
 
       try {
@@ -67,7 +68,11 @@ const SingleMail = () => {
           <div className="col-1">
             <button
               className="btn btn-primary"
-              onClick={() => navigate("/inbox")}
+              onClick={() =>
+                setTimeout(() => {
+                  navigate("/inbox");
+                }, 500)
+              }
             >
               Back
             </button>
