@@ -17,6 +17,7 @@ import SideOption from "../pages/SideOption";
 import SideOptionClickable from "../pages/SideOptionClickable";
 import Sent from "../pages/Sent";
 import Trash from "../pages/Trash";
+import Draft from "../pages/Draft";
 const Mail = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.inbox.profile);
@@ -25,6 +26,7 @@ const Mail = () => {
   const inbox = useSelector((state) => state.inbox.inbox);
   const sent = useSelector((state) => state.inbox.sent);
   const trash = useSelector((state) => state.inbox.trash);
+  const draft = useSelector((state) => state.inbox.draft);
   const depend = localStorage.getItem("userEmail");
   useEffect(() => {
     if (!depend) {
@@ -101,10 +103,11 @@ const Mail = () => {
                 dispatch(inboxSliceAction.profileAction(false))
               }
             >
-              {!star && !sent && !trash && <Inbox />}
-              {star && !inbox && !sent && !trash && <Star />}
-              {sent && !inbox && !star && !trash && <Sent />}
-              {trash && !inbox && !star && !sent && <Trash />}
+              {!star && !sent && !trash && !draft && <Inbox />}
+              {star && !inbox && !sent && !trash && !draft && <Star />}
+              {sent && !inbox && !star && !trash && !draft && <Sent />}
+              {trash && !inbox && !star && !sent && !draft && <Trash />}
+              {!trash && !inbox && !star && !sent && draft && <Draft />}
             </div>
           </div>
         </div>

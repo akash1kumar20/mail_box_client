@@ -17,7 +17,7 @@ const Star = () => {
       </div>
       <h4 className="title">Star</h4>
       <div className="row">
-        <div className="col-2 ms-5">
+        <div className="col-4 ms-5">
           <h5>Sender</h5>
         </div>
         <div className="col-5 bodyHeading ms-4">
@@ -25,13 +25,13 @@ const Star = () => {
         </div>
       </div>
       <div className="row mailRecieve">
-        <div className="col-3 senderMail ms-5">
+        <div className="col-3  ms-5">
           <p>akashkumar2101sm@gmail.com</p>
         </div>
         <div className="col-8 ms-4">
           <p>
-            A message is going to be display here, when sender sends the email
-            and reciever recieves the email
+            A message is going to be display here, when the user star any mail
+            in inbox.
           </p>
         </div>
       </div>
