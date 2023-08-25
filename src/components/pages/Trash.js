@@ -73,7 +73,7 @@ const Trash = () => {
           <div className="col-4 ms-3">
             <p>
               <FontAwesomeIcon icon={faTrash} className="me-2" />
-              {mail.to}
+              {mail.from}
             </p>
           </div>
           <div className="col-7 ms-4">

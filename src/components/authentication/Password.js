@@ -23,7 +23,6 @@ const Password = () => {
     }, 3000);
   }
   const isLogIn = useSelector((state) => state.loginComponents.isLogIn);
-  console.log(userEmail, isLogIn);
   const passwordRef = useRef();
   const formHandler = async (event) => {
     event.preventDefault();
@@ -42,7 +41,6 @@ const Password = () => {
         password: passwordValue,
         returnSecureToken: true,
       });
-      console.log(res.data);
       dispatch(loginComponentsSliceActions.login(res.data));
       if (isLogIn) {
         toast.success("Welcome Back!!!", {

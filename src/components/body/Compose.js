@@ -20,14 +20,17 @@ const Compose = () => {
   };
   const composeMailHandler = async (event) => {
     event.preventDefault();
-    const emailValue = localStorage.getItem("userEmail");
-    let changeEmail = emailValue.replace("@", "").replace(".", "");
     const sanitizedBody = sanitizeHTML(content);
+    const senderEmail = localStorage.getItem("userEmail");
     const emailSent = {
       to: emailRef.current.value,
       subject: subjectRef.current.value,
       body: sanitizedBody,
+      from: senderEmail,
     };
+    let changeEmail = emailSent.to.replace("@", "").replace(".", "");
+    localStorage.setItem("mailSentTo", JSON.stringify(changeEmail));
+
     try {
       let res = await axios.post(
         `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}.json`,
@@ -41,7 +44,6 @@ const Compose = () => {
       });
       setTimeout(() => {
         dispatch(inboxSliceAction.composeAction(false));
-        window.location.reload(true);
       }, 1500);
     } catch (err) {
       console.log(err);

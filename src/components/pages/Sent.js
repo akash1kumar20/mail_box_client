@@ -6,13 +6,13 @@ import React, { useState, useEffect } from "react";
 const Sent = () => {
   const [sentData, setSentData] = useState([]);
   useEffect(() => {
-    const emailValue = localStorage.getItem("userEmail");
-    let changeEmail = emailValue.replace("@", "").replace(".", "");
+    const emailValue = JSON.parse(localStorage.getItem("mailSentTo"));
     const getData = async () => {
       try {
         let res = await axios.get(
-          `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}.json`
+          `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${emailValue}.json`
         );
+
         let convertData = [];
         for (let key in res.data) {
           convertData.push({ ...res.data[key], id: key });
@@ -23,7 +23,7 @@ const Sent = () => {
       }
     };
     getData();
-  });
+  }, []);
   return (
     <>
       <h4 className="title mt-5">Sent</h4>
@@ -36,7 +36,7 @@ const Sent = () => {
         </div>
       </div>
       {sentData.map((sent) => (
-        <div className="row ">
+        <div className="row" key={sent.id}>
           <div className="col-1">
             <FontAwesomeIcon icon={faCircle} />
           </div>

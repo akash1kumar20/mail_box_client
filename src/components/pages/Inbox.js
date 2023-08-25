@@ -83,7 +83,7 @@ const Inbox = () => {
               dispatch(inboxSliceAction.trashIconAction(false))
             }
           >
-            <p>{inbox.to}</p>
+            <p>{inbox.from}</p>
           </div>
           <div
             className="col-7 ms-2"
