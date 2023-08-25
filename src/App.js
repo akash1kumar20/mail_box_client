@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import LoginPage from "./components/pages/LoginPage";
+import LoginPage from "./components/otherPages/LoginPage";
 import LoadingComponent from "./components/UI/LoadingComponent";
 const ForgotPassword = lazy(() =>
   import("./components/authentication/ForgotPassword")
