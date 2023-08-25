@@ -13,20 +13,21 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 import { useNavigate } from "react-router-dom";
-import TrashAction from "./TrashAction";
+import TrashAction from "./../otherPages/TrashAction";
+
 const Inbox = () => {
   const [inboxMail, setInboxMail] = useState([]);
   const navigate = useNavigate();
   let count = 0;
-  const readMessage = Number(localStorage.getItem("count")) + 1;
-  const unreadMessage = inboxMail.length + 1 - readMessage;
+  const readMessage = Number(localStorage.getItem("count"));
+  const unreadMessage = inboxMail.length - readMessage;
   let length = inboxMail.length > 0;
   const dispatch = useDispatch();
   const trashIcon = useSelector((state) => state.inbox.trashIcon);
   const trashAction = useSelector((state) => state.inbox.trashAction);
+  const emailValue = localStorage.getItem("userEmail");
   useEffect(() => {
     const getData = async () => {
-      const emailValue = localStorage.getItem("userEmail");
       let changeEmail = emailValue.replace("@", "").replace(".", "");
       try {
         let res = await axios.get(
@@ -71,11 +72,11 @@ const Inbox = () => {
       {inboxMail.map((inbox) => (
         <div key={inbox.id} className="row mailRecieve">
           <div className="col-1">
+            <span className="countValue">{inbox.read && count++}</span>
             <FontAwesomeIcon icon={faStar} />
             {!inbox.read && (
               <FontAwesomeIcon icon={faCircle} className="blueDot" />
             )}
-            {inbox.read && localStorage.setItem("count", count++)}
           </div>
           <div
             className="col-2 senderMail"
@@ -83,7 +84,15 @@ const Inbox = () => {
               dispatch(inboxSliceAction.trashIconAction(false))
             }
           >
-            <p>{inbox.from}</p>
+            <p>
+              {inbox.from}
+              {inbox.from == emailValue ? (
+                <span className="online">Online</span>
+              ) : (
+                <span className="offline">Offline</span>
+              )}
+            </p>
+            {localStorage.setItem("count", count)}
             {localStorage.setItem("mailSentTo", inbox.to)}
           </div>
           <div

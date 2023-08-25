@@ -37,15 +37,14 @@ const SingleMail = () => {
         to: dataLocalStorage.to,
         subject: dataLocalStorage.subject,
         read: dataLocalStorage.read,
-        initialCount: 1,
+        from: dataLocalStorage.from,
       };
 
       try {
         let res = await axios.put(
-          `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}/${id}.json`,
+          `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentTo${changeEmail}/${id}.json`,
           updateData
         );
-        console.log(res.data);
       } catch (err) {
         console.log(err);
       }

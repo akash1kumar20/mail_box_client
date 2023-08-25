@@ -5,9 +5,9 @@ import LoadingComponent from "./components/UI/LoadingComponent";
 const ForgotPassword = lazy(() =>
   import("./components/authentication/ForgotPassword")
 );
-const Mail = lazy(() => import("./components/body/Mail"));
+const Mail = lazy(() => import("./components/mainBody/Mail"));
 const Password = lazy(() => import("./components/authentication/Password"));
-const SingleMail = lazy(() => import("./components/body/SingleMail"));
+const SingleMail = lazy(() => import("./components/otherPages/SingleMail"));
 const CreateAccount = lazy(() =>
   import("./components/authentication/CrateAccount")
 );
