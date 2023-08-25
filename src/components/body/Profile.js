@@ -14,6 +14,10 @@ const Profile = () => {
     event.preventDefault();
     dispatch(loginComponentsSliceActions.logout());
     dispatch(inboxSliceAction.profileAction(false));
+    dispatch(inboxSliceAction.starAction(false));
+    dispatch(inboxSliceAction.sentAction(false));
+    dispatch(inboxSliceAction.draftAction(false));
+    dispatch(inboxSliceAction.trashAction(false));
     toast.success("Logout Successfully!!!", {
       theme: "colored",
       position: "top-center",

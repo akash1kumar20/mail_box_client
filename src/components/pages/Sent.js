@@ -5,14 +5,17 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 const Sent = () => {
   const [sentData, setSentData] = useState([]);
+
   useEffect(() => {
-    const emailValue = JSON.parse(localStorage.getItem("mailSentTo"));
     const getData = async () => {
+      const senderMail = localStorage.getItem("mailSentTo");
+      const convertSenderMail = senderMail.replace("@", "").replace(".", "");
+
       try {
         let res = await axios.get(
-          `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${emailValue}.json`
+          `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentFrom${convertSenderMail}.json`
         );
-
+        console.log(res);
         let convertData = [];
         for (let key in res.data) {
           convertData.push({ ...res.data[key], id: key });
@@ -23,7 +26,7 @@ const Sent = () => {
       }
     };
     getData();
-  }, []);
+  });
   return (
     <>
       <h4 className="title mt-5">Sent</h4>

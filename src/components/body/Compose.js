@@ -22,19 +22,19 @@ const Compose = () => {
     event.preventDefault();
     const sanitizedBody = sanitizeHTML(content);
     const senderEmail = localStorage.getItem("userEmail");
-    const emailSent = {
+    const dataSent = {
       to: emailRef.current.value,
       subject: subjectRef.current.value,
       body: sanitizedBody,
       from: senderEmail,
     };
-    let changeEmail = emailSent.to.replace("@", "").replace(".", "");
-    localStorage.setItem("mailSentTo", JSON.stringify(changeEmail));
+    let sentTo = dataSent.to.replace("@", "").replace(".", "");
+    let recieveFrom = dataSent.from.replace("@", "").replace(".", "");
 
     try {
       let res = await axios.post(
-        `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}.json`,
-        emailSent
+        `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentTo${sentTo}.json`,
+        dataSent
       );
       console.log(res.data);
       toast.success("Email Sent!", {
@@ -52,6 +52,16 @@ const Compose = () => {
         theme: "dark",
         autoClose: 2000,
       });
+    }
+
+    try {
+      let res = await axios.post(
+        `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentFrom${recieveFrom}.json`,
+        dataSent
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
     }
   };
   return (

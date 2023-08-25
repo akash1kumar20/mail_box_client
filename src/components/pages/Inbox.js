@@ -30,7 +30,7 @@ const Inbox = () => {
       let changeEmail = emailValue.replace("@", "").replace(".", "");
       try {
         let res = await axios.get(
-          `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}.json`
+          `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentTo${changeEmail}.json`
         );
         const convertIntoArray = [];
         for (let key in res.data) {
@@ -84,6 +84,7 @@ const Inbox = () => {
             }
           >
             <p>{inbox.from}</p>
+            {localStorage.setItem("mailSentTo", inbox.to)}
           </div>
           <div
             className="col-7 ms-2"
