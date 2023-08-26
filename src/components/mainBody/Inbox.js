@@ -8,47 +8,26 @@ import {
   faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Inbox.css";
-import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 import { useNavigate } from "react-router-dom";
 import TrashAction from "./../otherPages/TrashAction";
 import useCustomHook from "../useCustomHook";
-
 const Inbox = () => {
-  const [inboxMail, setInboxMail] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const trashIcon = useSelector((state) => state.inbox.trashIcon);
   const trashAction = useSelector((state) => state.inbox.trashAction);
   const emailValue = localStorage.getItem("userEmail");
   let changeEmail = emailValue.replace("@", "").replace(".", "");
-  const [data] = useCustomHook(
+  const [data, arrayLength] = useCustomHook(
     `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentTo${changeEmail}.json`
   );
-  // useEffect(() => {
-  //   const getData = async () => {
-
-  //     try {
-  //       let res = await axios.get(
-  //         `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentTo${changeEmail}.json`
-  //       );
-  //       const convertIntoArray = [];
-  //       for (let key in res.data) {
-  //         convertIntoArray.push({ ...res.data[key], id: key });
-  //       }
-  //       setInboxMail(convertIntoArray);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
 
   let count = 0;
   const readMessage = Number(localStorage.getItem("count"));
-  const unreadMessage = inboxMail.length - readMessage;
-  let length = inboxMail.length > 0;
+  const unreadMessage = arrayLength - readMessage;
+  let length = arrayLength > 0;
   return (
     <>
       <div className="mb-4 mt-2 icons row justify-content-between">
@@ -70,7 +49,7 @@ const Inbox = () => {
           <h5 className="ms-5">Sender</h5>
         </div>
         <div className="col-5 bodyHeading ms-4">
-          <h5 className="ms-5">Message</h5>
+          <h5 className="ms-5">Message </h5>
         </div>
       </div>
       {data &&

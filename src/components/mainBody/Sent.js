@@ -1,32 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import "./Sent.css";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import useCustomHook from "../useCustomHook";
 const Sent = () => {
-  const [sentData, setSentData] = useState([]);
+  const senderMail = localStorage.getItem("mailSentTo");
+  const convertSenderMail = senderMail.replace("@", "").replace(".", "");
+  const [data] = useCustomHook(
+    `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentFrom${convertSenderMail}.json`
+  );
 
-  useEffect(() => {
-    const getData = async () => {
-      const senderMail = localStorage.getItem("mailSentTo");
-      const convertSenderMail = senderMail.replace("@", "").replace(".", "");
-
-      try {
-        let res = await axios.get(
-          `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentFrom${convertSenderMail}.json`
-        );
-        console.log(res);
-        let convertData = [];
-        for (let key in res.data) {
-          convertData.push({ ...res.data[key], id: key });
-        }
-        setSentData(convertData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getData();
-  });
   return (
     <>
       <h4 className="title mt-5">Sent</h4>
@@ -38,19 +20,20 @@ const Sent = () => {
           <h5>Message</h5>
         </div>
       </div>
-      {sentData.map((sent) => (
-        <div className="row" key={sent.id}>
-          <div className="col-1">
-            <FontAwesomeIcon icon={faCircle} />
+      {data &&
+        data.map((sent) => (
+          <div className="row" key={sent.id}>
+            <div className="col-1">
+              <FontAwesomeIcon icon={faCircle} />
+            </div>
+            <div className="col-3 ">
+              <p>{sent.to}</p>
+            </div>
+            <div className="col-7 ">
+              <textarea defaultValue={sent.body} rows={1} cols={75} />
+            </div>
           </div>
-          <div className="col-3 ">
-            <p>{sent.to}</p>
-          </div>
-          <div className="col-7 ">
-            <textarea defaultValue={sent.body} rows={1} cols={75} />
-          </div>
-        </div>
-      ))}
+        ))}
     </>
   );
 };

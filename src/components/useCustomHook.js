@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 const useCustomHook = (url) => {
   const [data, setData] = useState(null);
+  const [arrayLength, setArrayLength] = useState(0);
   useEffect(() => {
     const getData = async () => {
       try {
@@ -11,13 +12,16 @@ const useCustomHook = (url) => {
           convertData.push({ ...res.data[key], id: key });
         }
         setData(convertData);
+        setArrayLength(convertData.length);
       } catch (err) {
         // console.log(err);
       }
     };
     getData();
+    setInterval(getData, 2000);
+    //this will help to get the data automatically after every 2second.
   }, [url]);
-  return [data];
+  return [data, arrayLength];
 };
 
 export default useCustomHook;

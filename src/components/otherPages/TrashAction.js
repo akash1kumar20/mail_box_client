@@ -9,7 +9,6 @@ const TrashAction = () => {
     dataToDelete = JSON.parse(localStorage.getItem("dataToDelete"));
     id = dataToDelete.id;
   }
-
   useEffect(() => {
     const emailValue = localStorage.getItem("userEmail");
     let changeEmail = emailValue.replace("@", "").replace(".", "");
@@ -26,18 +25,15 @@ const TrashAction = () => {
         }
         try {
           let res = await axios.delete(
-            `https://new-project-2c75e-default-rtdb.firebaseio.com/emailSent${changeEmail}/${id}.json`
+            `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentTo${changeEmail}/${id}.json`
           );
-
-          setTimeout(() => {
-            window.location.reload(true);
-          }, 500);
         } catch (err) {
           console.log(err);
         }
       }
     };
     deleteData();
+    setInterval(deleteData, 2000);
   }, []);
 };
 
