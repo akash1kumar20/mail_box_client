@@ -1,5 +1,5 @@
 .composeBox {
-  position: fixed;
+  position: absolute;
   width: 40%;
   height: 60%;
   max-height: fit-content;
@@ -7,26 +7,33 @@
   color: black;
   top: 40%;
   left: 50%;
+  box-shadow: 0px 0px 8px rgb(140, 138, 138);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .composeInput {
   margin-top: 7px;
   max-width: 85%;
   border: 0px solid white;
+  outline: 0;
 }
 .composeInput:hover {
   margin-top: 7px;
   max-width: 85%;
+  outline: 0;
   border: 0px solid white;
 }
 .composeInputSubject {
   margin-top: 7px;
   max-width: 79%;
   border: 0px solid white;
+  outline: 0;
 }
 .composeInputSubject:hover {
   margin-top: 7px;
   max-width: 79%;
   border: 0px solid white;
+  outline: 0;
 }
 .composeRow {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);

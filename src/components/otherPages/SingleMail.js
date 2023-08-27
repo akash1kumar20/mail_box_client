@@ -38,6 +38,7 @@ const SingleMail = () => {
         subject: dataLocalStorage.subject,
         read: dataLocalStorage.read,
         from: dataLocalStorage.from,
+        date: dataLocalStorage.date,
       };
 
       try {
@@ -77,7 +78,7 @@ const SingleMail = () => {
             </button>
           </div>
         </div>
-        <div className="row mt-2 mb-2">
+        <div className="row mt-2 mb-2 justify-content-between">
           <div className="col-4">
             <p>
               <img
@@ -90,8 +91,8 @@ const SingleMail = () => {
               <strong> {mail.to}</strong>
             </p>
           </div>
-          <div className="col-4">
-            <p>{mail.date}</p>
+          <div className="col-4 mt-4 ps-5">
+            <strong className="ps-5"> {mail.date}</strong>
           </div>
         </div>
         <div className="row ms-3 me-3 singleMailMessage">

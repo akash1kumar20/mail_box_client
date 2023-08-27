@@ -1,22 +1,19 @@
 import React, { useEffect } from "react";
 import "./Mail.css";
-import { useSelector, useDispatch } from "react-redux";
-import { canvasAction } from "../../redux_store/canvasSlice";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Profile from "../otherPages/Profile";
 import Compose from "./Compose";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SideOption from "./../otherPages/SideOption";
-import SideOptionClickable from "../otherPages/SideOptionClickable";
 import MailActiveItem from "../otherPages/MailActiveItem";
 import Header from "../UI/Header";
+import SideOptioAction from "../otherPages/SideOptioAction";
+import { Outlet } from "react-router-dom";
 const Mail = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.inbox.profile);
   const compose = useSelector((state) => state.inbox.compose);
-  const canvasState = useSelector((state) => state.canvas.canvasVisibility);
-  const active = useSelector((state) => state.canvas.active);
   const depend = localStorage.getItem("userEmail");
   useEffect(() => {
     if (!depend) {
@@ -31,14 +28,6 @@ const Mail = () => {
       return;
     }
   }, []);
-  const dispatch = useDispatch();
-  const closeCanvas = () => {
-    if (active === true) {
-      return;
-    } else {
-      dispatch(canvasAction.setCanvasVisibility(false));
-    }
-  };
 
   return (
     <>
@@ -49,25 +38,8 @@ const Mail = () => {
         <div className="mailBackground">
           <Header />
           <div className="row">
-            {!canvasState && (
-              <div
-                className="col-1 ms-4 me-sm-5"
-                onMouseOver={() => dispatch(canvasAction.showCanvas())}
-              >
-                <SideOption />
-              </div>
-            )}
-            {canvasState && (
-              <div
-                className="col-2 ms-md-4"
-                onMouseOut={() => dispatch(closeCanvas)}
-              >
-                <SideOptionClickable />
-              </div>
-            )}
-            <>
-              <MailActiveItem />
-            </>
+            <SideOptioAction />
+            <MailActiveItem />
           </div>
         </div>
       )}

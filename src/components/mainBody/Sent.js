@@ -8,7 +8,6 @@ const Sent = () => {
   const [data] = useCustomHook(
     `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentFrom${convertSenderMail}.json`
   );
-
   return (
     <>
       <h4 className="title mt-5">Sent</h4>
@@ -30,13 +29,10 @@ const Sent = () => {
               <p>{sent.to}</p>
             </div>
             <div className="col-7 ">
-              <textarea
-                defaultValue={sent.body}
-                rows={1}
-                cols={75}
-                className="sentMessageBody"
-                readOnly
-              />
+              <p className="sentMessageBody">
+                <strong className="me-2">{sent.subject}</strong>
+                {sent.body}
+              </p>
             </div>
           </div>
         ))}

@@ -12,6 +12,7 @@
 }
 .bodyHeading {
   text-align: left;
+  padding-left: 180px;
 }
 .unreadMessage {
   color: brown;
@@ -25,14 +26,15 @@
   font-size: small;
 }
 .inboxMessage {
-  border: 1px solid black;
   margin-bottom: 5px;
-  color: rgb(0, 0, 0);
   background-color: rgba(255, 255, 255, 0.5);
+  padding-left: 5px;
   cursor: pointer;
-  border: 1px solid white;
-  font-weight: bold;
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* to add three dots to show overflow content */
 }
 .hide {
   display: none;

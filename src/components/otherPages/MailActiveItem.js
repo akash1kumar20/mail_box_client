@@ -6,11 +6,7 @@ import Draft from "./../mainBody/Draft";
 import { useSelector, useDispatch } from "react-redux";
 import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 const MailActiveItem = () => {
-  const star = useSelector((state) => state.inbox.star);
-  const inbox = useSelector((state) => state.inbox.inbox);
-  const sent = useSelector((state) => state.inbox.sent);
-  const trash = useSelector((state) => state.inbox.trash);
-  const draft = useSelector((state) => state.inbox.draft);
+  const openComponet = useSelector((state) => state.inbox.componentOpen);
   const dispatch = useDispatch();
 
   return (
@@ -18,11 +14,11 @@ const MailActiveItem = () => {
       className="col-9 inboxBox ms-md-5 ms-sm-2"
       onMouseOver={() => dispatch(inboxSliceAction.profileAction(false))}
     >
-      {!star && !sent && !trash && !draft && <Inbox />}
-      {star && !inbox && !sent && !trash && !draft && <Star />}
-      {sent && !inbox && !star && !trash && !draft && <Sent />}
-      {trash && !inbox && !star && !sent && !draft && <Trash />}
-      {!trash && !inbox && !star && !sent && draft && <Draft />}
+      {openComponet === "inbox" && <Inbox />}
+      {openComponet === "trash" && <Trash />}
+      {openComponet === "star" && <Star />}
+      {openComponet === "sent" && <Sent />}
+      {openComponet === "draft" && <Draft />}
     </div>
   );
 };

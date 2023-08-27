@@ -12,41 +12,7 @@ import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 import "./SideOptionClickable.css";
 const SideOptionClickable = () => {
   const dispatch = useDispatch();
-  const inboxHandler = () => {
-    dispatch(inboxSliceAction.inboxAaction(true));
-    dispatch(inboxSliceAction.starAction(false));
-    dispatch(inboxSliceAction.sentAction(false));
-    dispatch(inboxSliceAction.draftAction(false));
-    dispatch(inboxSliceAction.trashAction(false));
-  };
-  const starHandler = () => {
-    dispatch(inboxSliceAction.starAction(true));
-    dispatch(inboxSliceAction.inboxAaction(false));
-    dispatch(inboxSliceAction.sentAction(false));
-    dispatch(inboxSliceAction.draftAction(false));
-    dispatch(inboxSliceAction.trashAction(false));
-  };
-  const sentHandler = () => {
-    dispatch(inboxSliceAction.sentAction(true));
-    dispatch(inboxSliceAction.starAction(false));
-    dispatch(inboxSliceAction.inboxAaction(false));
-    dispatch(inboxSliceAction.draftAction(false));
-    dispatch(inboxSliceAction.trashAction(false));
-  };
-  const draftHandler = () => {
-    dispatch(inboxSliceAction.draftAction(true));
-    dispatch(inboxSliceAction.sentAction(false));
-    dispatch(inboxSliceAction.starAction(false));
-    dispatch(inboxSliceAction.inboxAaction(false));
-    dispatch(inboxSliceAction.trashAction(false));
-  };
-  const trashHandler = () => {
-    dispatch(inboxSliceAction.trashAction(true));
-    dispatch(inboxSliceAction.draftAction(false));
-    dispatch(inboxSliceAction.sentAction(false));
-    dispatch(inboxSliceAction.starAction(false));
-    dispatch(inboxSliceAction.inboxAaction(false));
-  };
+
   return (
     <div className="icons mt-4 sideOptionClickable">
       <h3
@@ -56,23 +22,38 @@ const SideOptionClickable = () => {
         <FontAwesomeIcon icon={faPencil} className="mb-1 me-1" />
         <span> Compose</span>
       </h3>
-      <h5 onClick={inboxHandler} className="elements">
+      <h5
+        onClick={() => dispatch(inboxSliceAction.componentOpenAction("inbox"))}
+        className="elements"
+      >
         <FontAwesomeIcon icon={faInbox} className="mb-1 me-3" />
         <span> Inbox</span>
       </h5>
-      <h5 onClick={starHandler} className="elements">
+      <h5
+        onClick={() => dispatch(inboxSliceAction.componentOpenAction("star"))}
+        className="elements"
+      >
         <FontAwesomeIcon icon={faStar} className="mb-1 me-3" />
         <span> Star</span>
       </h5>
-      <h5 className="elements" onClick={sentHandler}>
+      <h5
+        className="elements"
+        onClick={() => dispatch(inboxSliceAction.componentOpenAction("sent"))}
+      >
         <FontAwesomeIcon icon={faPaperPlane} className="mb-1 me-3" />
         <span> Sent</span>
       </h5>
-      <h5 className="elements" onClick={draftHandler}>
+      <h5
+        className="elements"
+        onClick={() => dispatch(inboxSliceAction.componentOpenAction("draft"))}
+      >
         <FontAwesomeIcon icon={faBookmark} className="mb-1 me-3" />
         <span> Draft</span>
       </h5>
-      <h5 className="elements" onClick={trashHandler}>
+      <h5
+        className="elements"
+        onClick={() => dispatch(inboxSliceAction.componentOpenAction("trash"))}
+      >
         <FontAwesomeIcon icon={faTrashCan} className="me-3" />
         <span>Trash</span>
       </h5>

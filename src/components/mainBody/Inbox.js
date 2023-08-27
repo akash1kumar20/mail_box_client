@@ -13,9 +13,11 @@ import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 import { useNavigate } from "react-router-dom";
 import TrashAction from "./../otherPages/TrashAction";
 import useCustomHook from "../useCustomHook";
+import { useMemo } from "react";
+import { useCallback } from "react";
 const Inbox = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const trashIcon = useSelector((state) => state.inbox.trashIcon);
   const trashAction = useSelector((state) => state.inbox.trashAction);
   const emailValue = localStorage.getItem("userEmail");
@@ -23,7 +25,6 @@ const Inbox = () => {
   const [data, arrayLength] = useCustomHook(
     `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentTo${changeEmail}.json`
   );
-
   let count = 0;
   const readMessage = Number(localStorage.getItem("count"));
   const unreadMessage = arrayLength - readMessage;
@@ -95,13 +96,9 @@ const Inbox = () => {
                 dispatch(inboxSliceAction.trashIconAction(true))
               }
             >
-              <textarea
-                defaultValue={inbox.body}
-                cols="77"
-                rows="1"
-                className="inboxMessage"
-                readOnly
-              />
+              <p className="inboxMessage">
+                <strong className="me-1">{inbox.subject}</strong> {inbox.body}{" "}
+              </p>
               <p className="hide">Click on me to read the full message</p>
             </div>
             {trashIcon && (
@@ -114,7 +111,7 @@ const Inbox = () => {
                     localStorage.setItem("dataToDelete", JSON.stringify(inbox))
                   )}
                 />
-                {trashAction && <TrashAction />}
+                {trashAction && <TrashAction inbox={inbox} />}
               </div>
             )}
           </div>

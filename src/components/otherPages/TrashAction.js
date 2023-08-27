@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-const TrashAction = () => {
+const TrashAction = (inbox) => {
+  console.log(inbox);
   const trashAction = useSelector((state) => state.inbox.trashAction);
   const [data, setData] = useState();
   const [id, setId] = useState(null);
@@ -9,7 +10,8 @@ const TrashAction = () => {
     const dataToDelete = JSON.parse(localStorage.getItem("dataToDelete"));
     setData(dataToDelete);
     setId(dataToDelete.id);
-  }, []);
+  }, [data]);
+
   useEffect(() => {
     const emailValue = localStorage.getItem("userEmail");
     let changeEmail = emailValue.replace("@", "").replace(".", "");
@@ -35,7 +37,7 @@ const TrashAction = () => {
     };
     deleteData();
     setInterval(deleteData, 2000);
-  }, []);
+  }, [data]);
 };
 
 export default TrashAction;
