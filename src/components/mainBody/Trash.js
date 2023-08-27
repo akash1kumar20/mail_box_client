@@ -60,7 +60,12 @@ const Trash = () => {
               </p>
             </div>
             <div className="col-7 ms-4">
-              <textarea defaultValue={mail.body} rows="1" cols="75" />
+              <textarea
+                defaultValue={mail.body}
+                rows="1"
+                cols="75"
+                className="trashMessageBody"
+              />
             </div>
           </div>
         ))}

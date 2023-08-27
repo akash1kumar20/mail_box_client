@@ -29,6 +29,20 @@
   margin-bottom: 5px;
   color: rgb(0, 0, 0);
   background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  border: 1px solid white;
+  font-weight: bold;
+  display: block;
+}
+.hide {
+  display: none;
+  color: rgb(103, 5, 5);
+  font-size: small;
+  text-align: center;
+}
+/* to display a text when user hover on the .inboxMessage */
+.inboxMessage:hover + .hide {
+  display: block;
 }
 .countValue {
   display: none;

@@ -78,16 +78,21 @@ const SingleMail = () => {
           </div>
         </div>
         <div className="row mt-2 mb-2">
-          <p>
-            <img
-              src={imgToUse}
-              alt="Dummy image"
-              height="70px"
-              width="70px"
-              className="me-3"
-            />
-            <strong> {mail.to}</strong>
-          </p>
+          <div className="col-4">
+            <p>
+              <img
+                src={imgToUse}
+                alt="Dummy image"
+                height="70px"
+                width="70px"
+                className="me-3"
+              />
+              <strong> {mail.to}</strong>
+            </p>
+          </div>
+          <div className="col-4">
+            <p>{mail.date}</p>
+          </div>
         </div>
         <div className="row ms-3 me-3 singleMailMessage">
           <strong className="singleMailMessageHeading">Message</strong>

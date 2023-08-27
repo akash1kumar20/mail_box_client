@@ -30,7 +30,13 @@ const Sent = () => {
               <p>{sent.to}</p>
             </div>
             <div className="col-7 ">
-              <textarea defaultValue={sent.body} rows={1} cols={75} />
+              <textarea
+                defaultValue={sent.body}
+                rows={1}
+                cols={75}
+                className="sentMessageBody"
+                readOnly
+              />
             </div>
           </div>
         ))}

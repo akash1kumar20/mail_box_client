@@ -27,6 +27,7 @@ const Compose = () => {
       subject: subjectRef.current.value,
       body: sanitizedBody,
       from: senderEmail,
+      date: new Date(),
     };
     let sentTo = dataSent.to.replace("@", "").replace(".", "");
     let recieveFrom = dataSent.from.replace("@", "").replace(".", "");

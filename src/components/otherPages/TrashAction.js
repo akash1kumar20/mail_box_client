@@ -1,14 +1,15 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const TrashAction = () => {
   const trashAction = useSelector((state) => state.inbox.trashAction);
-  let dataToDelete;
-  let id;
-  if (trashAction) {
-    dataToDelete = JSON.parse(localStorage.getItem("dataToDelete"));
-    id = dataToDelete.id;
-  }
+  const [data, setData] = useState();
+  const [id, setId] = useState(null);
+  useEffect(() => {
+    const dataToDelete = JSON.parse(localStorage.getItem("dataToDelete"));
+    setData(dataToDelete);
+    setId(dataToDelete.id);
+  }, []);
   useEffect(() => {
     const emailValue = localStorage.getItem("userEmail");
     let changeEmail = emailValue.replace("@", "").replace(".", "");
@@ -17,7 +18,7 @@ const TrashAction = () => {
         try {
           let res = await axios.post(
             `https://new-project-2c75e-default-rtdb.firebaseio.com/deletedEmail${changeEmail}.json`,
-            dataToDelete
+            data
           );
           console.log(res);
         } catch (err) {

@@ -100,7 +100,9 @@ const Inbox = () => {
                 cols="77"
                 rows="1"
                 className="inboxMessage"
+                readOnly
               />
+              <p className="hide">Click on me to read the full message</p>
             </div>
             {trashIcon && (
               <div className="col-1 ms-2">
@@ -113,14 +115,6 @@ const Inbox = () => {
                   )}
                 />
                 {trashAction && <TrashAction />}
-                <strong
-                  className="ms-2 text-danger"
-                  onClick={() =>
-                    dispatch(inboxSliceAction.trashIconAction(false))
-                  }
-                >
-                  X
-                </strong>
               </div>
             )}
           </div>

@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect } from "react";
 import "./Mail.css";
-import mHeading from "./../../../src/images/logo_gmail_lockup_dark_1x_r5.png";
 import { useSelector, useDispatch } from "react-redux";
 import { canvasAction } from "../../redux_store/canvasSlice";
 import { useNavigate } from "react-router-dom";
-import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 import Profile from "../otherPages/Profile";
 import Compose from "./Compose";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Inbox from "./Inbox";
-import Star from "./Star";
 import SideOption from "./../otherPages/SideOption";
 import SideOptionClickable from "../otherPages/SideOptionClickable";
-import Sent from "./Sent";
-import Trash from "./Trash";
-import Draft from "./Draft";
+import MailActiveItem from "../otherPages/MailActiveItem";
+import Header from "../UI/Header";
 const Mail = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.inbox.profile);
   const compose = useSelector((state) => state.inbox.compose);
-  const star = useSelector((state) => state.inbox.star);
-  const inbox = useSelector((state) => state.inbox.inbox);
-  const sent = useSelector((state) => state.inbox.sent);
-  const trash = useSelector((state) => state.inbox.trash);
-  const draft = useSelector((state) => state.inbox.draft);
+  const canvasState = useSelector((state) => state.canvas.canvasVisibility);
+  const active = useSelector((state) => state.canvas.active);
   const depend = localStorage.getItem("userEmail");
   useEffect(() => {
     if (!depend) {
@@ -41,18 +31,12 @@ const Mail = () => {
       return;
     }
   }, []);
-  const [active, setActive] = useState(false);
   const dispatch = useDispatch();
-  const canvasState = useSelector((state) => state.canvas.canvasVisibility);
-  const activeCanvas = () => {
-    dispatch(canvasAction.showCanvas());
-    setActive((prevState) => !prevState);
-  };
   const closeCanvas = () => {
     if (active === true) {
       return;
     } else {
-      dispatch(canvasAction.showCanvas());
+      dispatch(canvasAction.setCanvasVisibility(false));
     }
   };
 
@@ -63,26 +47,7 @@ const Mail = () => {
       {compose && <Compose />}
       {depend && (
         <div className="mailBackground">
-          <div className="topPart">
-            <h3 className="pt-2 ms-3">
-              <FontAwesomeIcon
-                icon={faBars}
-                className="text-white me-3 ms-2"
-                onClick={activeCanvas}
-              />
-              <img src={mHeading} alt="M" height="45px" className="me-4" />
-              <input
-                type="search"
-                placeholder="Search mail"
-                className="search text-white"
-              />
-              <FontAwesomeIcon
-                icon={faUser}
-                className="user"
-                onClick={() => dispatch(inboxSliceAction.profileAction(true))}
-              />
-            </h3>
-          </div>
+          <Header />
           <div className="row">
             {!canvasState && (
               <div
@@ -93,22 +58,16 @@ const Mail = () => {
               </div>
             )}
             {canvasState && (
-              <div className="col-2 ms-md-4" onMouseOut={closeCanvas}>
+              <div
+                className="col-2 ms-md-4"
+                onMouseOut={() => dispatch(closeCanvas)}
+              >
                 <SideOptionClickable />
               </div>
             )}
-            <div
-              className="col-9 inboxBox ms-md-5 ms-sm-2"
-              onMouseOver={() =>
-                dispatch(inboxSliceAction.profileAction(false))
-              }
-            >
-              {!star && !sent && !trash && !draft && <Inbox />}
-              {star && !inbox && !sent && !trash && !draft && <Star />}
-              {sent && !inbox && !star && !trash && !draft && <Sent />}
-              {trash && !inbox && !star && !sent && !draft && <Trash />}
-              {!trash && !inbox && !star && !sent && draft && <Draft />}
-            </div>
+            <>
+              <MailActiveItem />
+            </>
           </div>
         </div>
       )}

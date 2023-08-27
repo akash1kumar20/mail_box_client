@@ -10,3 +10,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   padding-top: 5px;
 }
+.trashMessageBody {
+  cursor: pointer;
+  border: 1px solid white;
+}
