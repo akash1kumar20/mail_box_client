@@ -24,16 +24,18 @@
   color: blue;
   margin-left: 20px;
   font-size: small;
+  display: inline;
 }
 .inboxMessage {
   margin-bottom: 5px;
   background-color: rgba(255, 255, 255, 0.5);
-  padding-left: 5px;
   cursor: pointer;
   display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 17px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   /* to add three dots to show overflow content */
 }
 .hide {
@@ -50,18 +52,14 @@
   display: none;
 }
 .online {
-  background-color: green;
-  color: white;
-  font-size: x-small;
-  margin-left: 5px;
+  background-color: white;
+  color: green;
+  font-size: 14px;
   padding-left: 2px;
-  padding-right: 2px;
 }
 .offline {
-  background-color: tomato;
-  color: white;
-  font-size: x-small;
-  margin-left: 5px;
+  background-color: white;
+  color: tomato;
+  font-size: 14px;
   padding-left: 2px;
-  padding-right: 2px;
 }

@@ -24,7 +24,6 @@ const SingleMail = () => {
     }
   }, []);
 
-  const mail = JSON.parse(localStorage.getItem("mailRecieve"));
   const dataLocalStorage = JSON.parse(localStorage.getItem("mailRecieve"));
   let id = dataLocalStorage.id;
 
@@ -61,7 +60,7 @@ const SingleMail = () => {
           <div className="col-5">
             <h5>
               <FontAwesomeIcon icon={faStamp} className="me-3 ms-4" />
-              {mail.subject}
+              {dataLocalStorage.subject}
               <span className="singleMailInboxTag "> Inbox</span>
             </h5>
           </div>
@@ -88,16 +87,16 @@ const SingleMail = () => {
                 width="70px"
                 className="me-3"
               />
-              <strong> {mail.to}</strong>
+              <strong> {dataLocalStorage.to}</strong>
             </p>
           </div>
           <div className="col-4 mt-4 ps-5">
-            <strong className="ps-5"> {mail.date}</strong>
+            <strong className="ps-5"> {dataLocalStorage.date}</strong>
           </div>
         </div>
         <div className="row ms-3 me-3 singleMailMessage">
           <strong className="singleMailMessageHeading">Message</strong>
-          <p className="mt-2"> {mail.body}</p>
+          <p className="mt-2"> {dataLocalStorage.body}</p>
         </div>
       </div>
     </>

@@ -11,6 +11,7 @@ import useCustomHook from "../useCustomHook";
 const Trash = () => {
   const emailValue = localStorage.getItem("userEmail");
   let changeEmail = emailValue.replace("@", "").replace(".", "");
+
   const [data] = useCustomHook(
     `https://new-project-2c75e-default-rtdb.firebaseio.com/deletedEmail${changeEmail}.json`
   );
@@ -51,17 +52,17 @@ const Trash = () => {
         </div>
       </div>
       {data &&
-        data.map((mail) => (
-          <div className="row mailRecieve" key={mail.id}>
+        data.map((dataToDelete) => (
+          <div className="row mailRecieve" key={dataToDelete.id}>
             <div className="col-4 ms-3">
               <p>
                 <FontAwesomeIcon icon={faTrash} className="me-2" />
-                {mail.from}
+                {dataToDelete.from}
               </p>
             </div>
             <div className="col-7 ms-4">
               <textarea
-                defaultValue={mail.body}
+                defaultValue={dataToDelete.body}
                 rows="1"
                 cols="75"
                 className="trashMessageBody"
