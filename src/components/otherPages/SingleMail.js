@@ -7,6 +7,7 @@ import { faStamp } from "@fortawesome/free-solid-svg-icons";
 import imgToUse from "./../../images/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png";
 import "./SingleMail.css";
 import axios from "axios";
+import useEmailHook from "../useEmailHook";
 const SingleMail = () => {
   const navigate = useNavigate();
   const depend = localStorage.getItem("userEmail");
@@ -26,11 +27,10 @@ const SingleMail = () => {
 
   const dataLocalStorage = JSON.parse(localStorage.getItem("mailRecieve"));
   let id = dataLocalStorage.id;
+  const [changeEmail] = useEmailHook();
 
   useEffect(() => {
     const handleMail = async () => {
-      const emailValue = localStorage.getItem("userEmail");
-      let changeEmail = emailValue.replace("@", "").replace(".", "");
       let updateData = {
         body: dataLocalStorage.body,
         to: dataLocalStorage.to,

@@ -8,9 +8,9 @@ import {
 import "./Trash.css";
 import axios from "axios";
 import useCustomHook from "../useCustomHook";
+import useEmailHook from "../useEmailHook";
 const Trash = () => {
-  const emailValue = localStorage.getItem("userEmail");
-  let changeEmail = emailValue.replace("@", "").replace(".", "");
+  const [changeEmail] = useEmailHook();
 
   const [data] = useCustomHook(
     `https://new-project-2c75e-default-rtdb.firebaseio.com/deletedEmail${changeEmail}.json`

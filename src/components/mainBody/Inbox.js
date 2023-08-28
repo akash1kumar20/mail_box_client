@@ -17,12 +17,13 @@ import useCustomHook from "../useCustomHook";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useEmailHook from "../useEmailHook";
 const Inbox = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const trashIcon = useSelector((state) => state.inbox.trashIcon);
+  const [changeEmail] = useEmailHook();
   const emailValue = localStorage.getItem("userEmail");
-  let changeEmail = emailValue.replace("@", "").replace(".", "");
   const [data, arrayLength] = useCustomHook(
     `https://new-project-2c75e-default-rtdb.firebaseio.com/dataSentTo${changeEmail}.json`
   );
