@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Mail.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Profile from "../otherPages/Profile";
 import Compose from "./Compose";
@@ -9,11 +9,12 @@ import "react-toastify/dist/ReactToastify.css";
 import MailActiveItem from "../otherPages/MailActiveItem";
 import Header from "../UI/Header";
 import SideOptioAction from "../otherPages/SideOptioAction";
-import { Outlet } from "react-router-dom";
+import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 const Mail = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.inbox.profile);
   const compose = useSelector((state) => state.inbox.compose);
+  const dispatch = useDispatch();
   const depend = localStorage.getItem("userEmail");
   useEffect(() => {
     if (!depend) {
@@ -26,6 +27,8 @@ const Mail = () => {
         navigate("/");
       }, 3000);
       return;
+    } else {
+      dispatch(inboxSliceAction.componentOpenAction("inbox"));
     }
   }, []);
 

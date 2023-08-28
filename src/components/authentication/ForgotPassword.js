@@ -1,6 +1,7 @@
 import Card from "../UI/Card";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { TextField } from "@mui/material";
 const ForgotPassword = () => {
   const navigate = useNavigate();
   return (
@@ -21,7 +22,13 @@ const ForgotPassword = () => {
           </div>
           <div className="row">
             <form>
-              <input type="email" required placeholder="Enter Your Email" />
+              <TextField
+                label="Enter Your Email"
+                variant="filled"
+                margin="normal"
+                required
+                className="textField"
+              />
               <div className="row mb-5 justify-content-between">
                 <div className="col-3 mb-3">
                   <button

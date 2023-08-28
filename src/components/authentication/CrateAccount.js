@@ -1,17 +1,18 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Card from "../UI/Card";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginComponentsSliceActions } from "../../redux_store/loginComponents";
+import { TextField } from "@mui/material";
 const CrateAccount = () => {
-  const emailRef = useRef();
-  const nameRef = useRef();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formHandler = (event) => {
     event.preventDefault();
-    const emailValue = emailRef.current.value;
-    const nameValue = nameRef.current.value;
+    const emailValue = name;
+    const nameValue = email;
     console.log(emailValue, nameValue);
     localStorage.setItem("beforeAuth", JSON.stringify(emailValue));
     dispatch(loginComponentsSliceActions.addData(emailValue));
@@ -38,18 +39,23 @@ const CrateAccount = () => {
         <div className="row mb-2">
           <form onSubmit={formHandler}>
             <div>
-              <input
+              <TextField
                 type="text"
+                label="Enter Your Name"
+                variant="filled"
+                className="textField"
+                margin="normal"
+                onChange={(event) => setName(event.target.value)}
                 required
-                placeholder="Enter Your Name"
-                className="mb-3"
-                ref={nameRef}
               />
-              <input
+              <TextField
                 type="email"
+                label="Enter Your Email"
+                variant="filled"
+                className="textField"
+                margin="normal"
+                onChange={(event) => setEmail(event.target.value)}
                 required
-                placeholder="Enter Your Email"
-                ref={emailRef}
               />
             </div>
             <div className="row mb-5 mt-3 justify-content-between">

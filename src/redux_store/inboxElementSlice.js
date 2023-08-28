@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const inboxInititalElement = {
   compose: null,
   profile: null,
-  componentOpen: "",
+  componentOpen: "inbox",
   trashIcon: null,
   trashAction: false,
 };

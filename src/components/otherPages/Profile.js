@@ -13,11 +13,7 @@ const Profile = () => {
   const logOutFunctionality = (event) => {
     event.preventDefault();
     dispatch(loginComponentsSliceActions.logout());
-    dispatch(inboxSliceAction.profileAction(false));
-    dispatch(inboxSliceAction.starAction(false));
-    dispatch(inboxSliceAction.sentAction(false));
-    dispatch(inboxSliceAction.draftAction(false));
-    dispatch(inboxSliceAction.trashAction(false));
+    dispatch(inboxSliceAction.componentOpenAction(""));
     toast.success("Logout Successfully!!!", {
       theme: "colored",
       position: "top-center",

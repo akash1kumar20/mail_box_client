@@ -1,17 +1,21 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Card from "../UI/Card";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import Google from "./Google";
 import { loginComponentsSliceActions } from "../../redux_store/loginComponents";
 import { useDispatch } from "react-redux";
+import { TextField } from "@mui/material";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const emailRef = useRef();
+  const [email, setEmail] = useState("");
+  const emailValueHandler = (event) => {
+    setEmail(event.target.value);
+  };
   const formHandler = (event) => {
     event.preventDefault();
-    let emailValue = emailRef.current.value;
+    let emailValue = email;
     dispatch(loginComponentsSliceActions.addData(emailValue));
     navigate("/password");
     dispatch(loginComponentsSliceActions.loginStatus(true));
@@ -27,11 +31,14 @@ const Login = () => {
 
         <div className="row mb-2">
           <form onSubmit={formHandler}>
-            <input
-              type="text"
+            <TextField
+              type="email"
+              label="Email"
+              variant="filled"
+              margin="normal"
               required
-              placeholder="Email or Phone"
-              ref={emailRef}
+              onChange={emailValueHandler}
+              className="textField"
             />
             <div className="row mb-5 mt-3 justify-content-between">
               <div className="col-sm-6 create">

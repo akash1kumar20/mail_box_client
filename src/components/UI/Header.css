@@ -1,0 +1,7 @@
+.topPart input {
+  width: 50%;
+  margin-right: 5%;
+  margin-left: 5%;
+  border: 1px solid rgba(0, 0, 0);
+  padding: 7px;
+}

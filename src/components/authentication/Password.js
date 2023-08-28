@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Card from "../UI/Card";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -8,6 +8,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginComponentsSliceActions } from "../../redux_store/loginComponents";
+import { TextField } from "@mui/material";
 const Password = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,10 +24,13 @@ const Password = () => {
     }, 3000);
   }
   const isLogIn = useSelector((state) => state.loginComponents.isLogIn);
-  const passwordRef = useRef();
+  const [password, setPassword] = useState("");
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+  };
   const formHandler = async (event) => {
     event.preventDefault();
-    let passwordValue = passwordRef.current.value;
+    let passwordValue = password;
     let url;
     if (isLogIn) {
       url =
@@ -93,11 +97,14 @@ const Password = () => {
 
             <div className="row mb-2">
               <form onSubmit={formHandler}>
-                <input
+                <TextField
                   type="password"
+                  label="Enter Your Password"
+                  variant="filled"
+                  className="textField"
+                  margin="normal"
+                  onChange={passwordHandler}
                   required
-                  placeholder="Enter Your Password"
-                  ref={passwordRef}
                 />
 
                 <p

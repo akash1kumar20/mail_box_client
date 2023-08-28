@@ -4,6 +4,7 @@ import mHeading from "./../../../src/images/logo_gmail_lockup_dark_1x_r5.png";
 import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 import { useDispatch } from "react-redux";
 import { canvasAction } from "../../redux_store/canvasSlice";
+import "./Header.css";
 const Header = () => {
   const dispatch = useDispatch();
   const activeCanvas = () => {

@@ -13,8 +13,6 @@ import { inboxSliceAction } from "../../redux_store/inboxElementSlice";
 import { useNavigate } from "react-router-dom";
 import TrashAction from "./../otherPages/TrashAction";
 import useCustomHook from "../useCustomHook";
-import { useMemo } from "react";
-import { useCallback } from "react";
 const Inbox = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
