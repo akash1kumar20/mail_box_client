@@ -6,6 +6,7 @@ import JoditEditor from "jodit-react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const Compose = () => {
   const editor = useRef(null);
   const emailRef = useRef();
@@ -89,7 +90,7 @@ const Compose = () => {
                 type="email"
                 id="To"
                 required
-                className="composeInput"
+                className="composeInput ms-3"
                 ref={emailRef}
               />
             </div>
@@ -100,7 +101,7 @@ const Compose = () => {
               <input
                 type="text"
                 id="subject"
-                className="composeInputSubject"
+                className="composeInputSubject ms-3"
                 ref={subjectRef}
               />
             </div>

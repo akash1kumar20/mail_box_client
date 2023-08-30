@@ -80,7 +80,7 @@ const Inbox = () => {
           <h5 className="ms-5 ps-3">Sender</h5>
         </div>
         <div className="col-5 bodyHeading ms-4">
-          <h5 className="ms-5">Message </h5>
+          <h5 className="ms-5"> Message </h5>
         </div>
       </div>
       {data &&
@@ -143,7 +143,10 @@ const Inbox = () => {
                     dispatch(inboxSliceAction.trashIconAction(true))
                   }
                 >
-                  <p className="inboxMessage"> {inbox.body}</p>
+                  <p className="inboxMessage">
+                    <strong className="me-1">{inbox.subject}</strong>
+                    {inbox.body}
+                  </p>
                   <p className="hide">Click on me to read the full message</p>
                 </div>
                 {trashIcon && (
